@@ -5,18 +5,8 @@
 ## 요구사항
 
 - Node.js 18+
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) 설치 및 PATH에 등록
-- ffmpeg (yt-dlp가 오디오 변환 시 사용)
-
-### Windows에서 yt-dlp 설치
-
-1. [yt-dlp.exe 릴리스](https://github.com/yt-dlp/yt-dlp/releases)에서 다운로드
-2. 원하는 폴더(예: `C:\tools`)에 넣고, 해당 폴더를 시스템 PATH에 추가  
-   **또는** 서버 실행 전에 경로만 지정:
-   ```powershell
-   $env:YT_DLP_PATH = "C:\경로\yt-dlp.exe"
-   npm start
-   ```
+- yt-dlp: 서버가 `server` 폴더의 yt-dlp.exe를 사용 (이미 있거나 [릴리스](https://github.com/yt-dlp/yt-dlp/releases)에서 받아 넣기)
+- ffmpeg: `server` 폴더에서 **get-ffmpeg.ps1** 실행하면 ffmpeg.exe, ffprobe.exe 자동 다운로드
 
 ## 서버 실행
 
