@@ -1,0 +1,7 @@
+node_modules/
+*.exe
+server/ffmpeg.exe
+server/ffprobe.exe
+server/yt-dlp.exe
+server/ffmpeg.zip
+server/ffmpeg_extract/
