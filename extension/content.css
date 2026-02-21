@@ -1,0 +1,39 @@
+.get-mp3-wrap {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px;
+  width: 100%;
+}
+.get-mp3-wrap > *:first-child {
+  min-width: 0;
+}
+.get-mp3-wrap .get-mp3-btn {
+  margin-left: auto;
+}
+
+.get-mp3-wrap .get-mp3-btn {
+  flex-shrink: 0;
+}
+
+.get-mp3-btn {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: #e53935;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.get-mp3-btn:hover:not(:disabled) {
+  background: #c62828;
+}
+
+.get-mp3-btn:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
