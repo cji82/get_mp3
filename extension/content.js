@@ -63,10 +63,12 @@
     return btn;
   };
 
+  const isWatchPage = () => /youtube\.com\/watch|youtu\.be\//.test(window.location.href);
+
   const inject = () => {
-    if (document.getElementById('get-mp3-btn')) return;
+    if (document.getElementById('get-mp3-btn')) return true;
     const titleEl = getTitleEl();
-    if (!titleEl) return;
+    if (!titleEl) return false;
     const row = document.createElement('div');
     row.id = 'get-mp3-wrap';
     row.className = 'get-mp3-wrap';
@@ -77,19 +79,42 @@
     titleEl.parentNode.insertBefore(row, titleEl);
     row.appendChild(titleEl);
     row.appendChild(createButton());
+    return true;
   };
 
   const run = () => {
-    inject();
+    if (!isWatchPage()) return;
+    if (inject()) return;
+    retryInject();
+  };
+
+  const MAX_RETRIES = 25;
+  const RETRY_MS = 400;
+  let retryCount = 0;
+  function retryInject() {
+    if (document.getElementById('get-mp3-btn') || retryCount >= MAX_RETRIES) return;
+    retryCount += 1;
+    setTimeout(() => {
+      if (inject()) { retryCount = 0; return; }
+      retryInject();
+    }, RETRY_MS);
+  }
+
+  const runOrRetry = () => {
+    retryCount = 0;
+    run();
   };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', run);
+    document.addEventListener('DOMContentLoaded', runOrRetry);
   } else {
-    run();
+    runOrRetry();
   }
   const observer = new MutationObserver(() => {
-    if (!document.getElementById('get-mp3-btn')) run();
+    if (isWatchPage() && !document.getElementById('get-mp3-btn')) runOrRetry();
   });
-  observer.observe(document.body, { childList: true, subtree: true });
+  if (document.body) observer.observe(document.body, { childList: true, subtree: true });
+  setInterval(() => {
+    if (isWatchPage() && !document.getElementById('get-mp3-btn')) runOrRetry();
+  }, 1500);
 })();
