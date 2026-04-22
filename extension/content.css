@@ -13,7 +13,9 @@
   margin-left: auto;
 }
 
-.get-mp3-wrap .get-mp3-btn {
+.get-mp3-wrap .get-mp3-menu-wrap {
+  margin-left: auto;
+  position: relative;
   flex-shrink: 0;
 }
 
@@ -36,4 +38,34 @@
 .get-mp3-btn:disabled {
   opacity: 0.8;
   cursor: not-allowed;
+}
+
+.get-mp3-menu {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  min-width: 360px;
+  background: #1f1f1f;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  padding: 6px;
+  z-index: 9999;
+}
+
+.get-mp3-menu-item {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.get-mp3-menu-item:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
